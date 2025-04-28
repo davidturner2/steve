@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Horror/steve horror.unity
-    guid: 8fe9a21140cc0b947a0c0e36c932e1bd
+    path: Assets/Horror/steve horror 1.unity
+    guid: ed3b473a6cc4a4d51b2f9f4aa32e28f4
   - enabled: 1
     path: Assets/Horror/jumpscare.unity
     guid: 3951e9c634704483c9216fbe6311548a
