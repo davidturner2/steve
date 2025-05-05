@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - club
+  - Student
   layers:
   - Default
   - TransparentFX
