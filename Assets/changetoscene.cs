@@ -3,14 +3,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class changetoscene : MonoBehaviour
 {
-    public void aart()
+    public int sdf;
+    public void aart(int a)
     {
         StartCoroutine("asdf");
+        sdf = a;
     }
     IEnumerator asdf()
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(sdf);
 
     }
 }

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - club
   - Student
+  - goal
+  - Animal
   layers:
   - Default
   - TransparentFX

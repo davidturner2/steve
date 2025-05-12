@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.UIElements;
+using UnityEngine.AI;
 
 public class throwItback : MonoBehaviour
 {
@@ -13,25 +15,56 @@ public bool cantrhow;
 public GameObject player;
 public GameObject ahh;
 public GameObject activate;
+    public AudioSource throwsound;
 private GameObject throwme;
+    private bool firsttime = true;
+    private bool nottalking = true;
 
+
+    public GameObject[] disabletheese;
+    public GameObject[] enabletheese;
+
+    int studentm;
     // Start is called before the first frame update
     void Start()
     {
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Finish")
+        {
+            foreach (GameObject go in disabletheese)
+            {
+                Destroy(go);
+            }
+            foreach (GameObject go in enabletheese)
+            {
+                go.SetActive(true);
+            }
+            GetComponent<Animator>().enabled = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        float distance = 50.07f;
+        float distance = 27.07f;
 
-        if (bouttothrow){
+        if (bouttothrow){           
             if (throwme==null){
                 bouttothrow = false;
                 cantrhow = false;
             }else{
                 throwme.transform.position = ahh.transform.position;
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (cantrhow == false)
+                {
+                    cantrhow = true;
+                }
+                
             }
         }
         /*
@@ -48,58 +81,118 @@ private GameObject throwme;
             asdfghj.text ="";
         }
 */
-if (Input.GetMouseButton(0)&&bouttothrow&&cantrhow){
+
+
+        if (Input.GetMouseButton(0)&&bouttothrow&&cantrhow){
                 throwme.transform.parent = null;
                     throwme.GetComponent<Rigidbody>().freezeRotation = false;
                     throwme.GetComponent<Collider>().isTrigger = false;
-
+            throwsound.Play();
                // throwme.GetComponent<Collider>().isTrigger = true;
                         throwme.GetComponent<Rigidbody>().AddForce(Camera.main.transform.rotation*Vector3.forward*4000);
                         bouttothrow = false;
-                        StartCoroutine("asdf");
-        
+                       
+            firsttime = false;
+
+
 }
 
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (cantrhow == true&& bouttothrow==false)
+            {
+                cantrhow = false;
+            }
 
-Ray asadsfdg = Camera.main.ScreenPointToRay(Input.mousePosition);
+        }
+
+
+        Ray asadsfdg = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit lskdljf;
-        if(Physics.Raycast(asadsfdg, out lskdljf,distance)){
-            asdfghj.text = lskdljf.collider.gameObject.name;
+        if (Physics.Raycast(asadsfdg, out lskdljf, distance))
+        {
 
-            if (Input.GetMouseButtonDown(0)){
-                if (lskdljf.collider.gameObject.tag == "club"){
+
+
+            if (lskdljf.collider.gameObject.tag == "club")
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
                     activate.SetActive(true);
-                            Cursor.visible = true;
-                            player.SetActive(false);
-                Cursor.lockState = CursorLockMode.None;
+                    UnityEngine.Cursor.visible = true;
+                    player.SetActive(false);
+                    UnityEngine.Cursor.lockState = CursorLockMode.None;
+                }
+                asdfghj.text = "Click to enter pin";
 
 
-                }else if(lskdljf.collider.gameObject.tag == "Student"){
-                    if(bouttothrow == false && cantrhow==false){
-                    throwme = lskdljf.collider.gameObject;
-                    throwme.GetComponent<Rigidbody>().freezeRotation = true;
-                    throwme.transform.rotation = Quaternion.identity;
-                    throwme.transform.parent = ahh.transform;
-
-                    StartCoroutine("asdf");
-                    bouttothrow = true;
+            }
+            else if (lskdljf.collider.gameObject.tag == "Student")
+            {
+                if (bouttothrow == false && cantrhow == false && nottalking)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        lskdljf.collider.gameObject.GetComponent<STUDEN>().aaa = false;
+                        Destroy(lskdljf.collider.gameObject.GetComponent<NavMeshAgent>());
+                        throwme = lskdljf.collider.gameObject;
+                        throwme.GetComponent<Rigidbody>().freezeRotation = true;
+                        throwme.transform.rotation = Quaternion.identity;
+                        throwme.transform.parent = ahh.transform;
+                        asdfghj.text = "";
+                        bouttothrow = true;
                     }
-                   
+                    else if (Input.GetKeyDown("e"))
+                    {
+                        nottalking = false;
+                        throwme = lskdljf.collider.gameObject;
+                        studentm = lskdljf.collider.gameObject.GetComponent<STUDEN>().message;
+                        lskdljf.collider.gameObject.GetComponent<STUDEN>().ask();
+                        asdfghj.text = "";
+                        print("ASDFG");
+                    }
+                    asdfghj.text = "Click to grab, press E to talk";
                 }
 
-                asdfghj.text = "Throw player WIP";
-                //Destroy(lskdljf.collider.gameObject);
+            }else if (lskdljf.collider.gameObject.tag == "Animal")
+            {
+                if (bouttothrow == false && cantrhow == false && nottalking)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        throwme = lskdljf.collider.gameObject;
+                        throwme.GetComponent<Rigidbody>().freezeRotation = true;
+                        throwme.transform.rotation = Quaternion.identity;
+                        throwme.transform.parent = ahh.transform;
+                        asdfghj.text = "";
+                        bouttothrow = true;
+                    }                 
+                    asdfghj.text = "Click to grab";
+                }
             }
-        }else{
-            asdfghj.text ="";
+
+
+            //Destroy(lskdljf.collider.gameObject);
+
+        }
+        else
+        {
+            if (firsttime && cantrhow)
+            {
+                asdfghj.text = "Click to throw at steve to slow him down";
+            }
+            else
+            {
+                asdfghj.text = "";
+            }
         }
     
         
     }
 
-    IEnumerator asdf(){
-    yield return new WaitForSeconds(1f);
-    cantrhow = !cantrhow;
+    public void okthen()
+    {
+        nottalking = true;
+        throwme.GetComponent<STUDEN>().bye();
     }
-
 }
