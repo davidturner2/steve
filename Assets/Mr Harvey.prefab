@@ -140,7 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goal: {fileID: 0}
   aaa: 1
-  n: 1
+  chase: {fileID: 0}
+  ambience: {fileID: 0}
 --- !u!54 &5399922909217230988
 Rigidbody:
   m_ObjectHideFlags: 0

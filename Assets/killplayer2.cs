@@ -11,13 +11,13 @@ public class killplayer2 : MonoBehaviour
         StartCoroutine("asdf");
     }
 IEnumerator asdf(){
-    yield return new WaitForSeconds(5);
-                                    SceneManager.LoadScene(0);
+    yield return new WaitForSeconds(4f);
+                                    SceneManager.LoadScene(1);
 
 }
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 }

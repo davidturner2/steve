@@ -5,8 +5,8 @@ using System.Collections;
 public class throwItback : MonoBehaviour
 {
 
-private bool bouttothrow = false;
-bool cantrhow;
+public bool bouttothrow = false;
+public bool cantrhow;
 
 
     public TextMeshProUGUI asdfghj;
