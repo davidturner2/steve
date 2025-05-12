@@ -16,7 +16,7 @@ public class quickanddirty : MonoBehaviour
         
     }
     public void asdf(){
-                player.SetActive(true);
+                player.GetComponent<FirstPersonLook>().enabled = true;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -28,7 +28,8 @@ public class quickanddirty : MonoBehaviour
    public void toll()
     {
         if(input.text=="1738"){
-                player.SetActive(true);
+                player.GetComponent<FirstPersonLook>().enabled = true;
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
             this.gameObject.SetActive(false);

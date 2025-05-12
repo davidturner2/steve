@@ -19,11 +19,12 @@ public GameObject activate;
 private GameObject throwme;
     private bool firsttime = true;
     private bool nottalking = true;
-
+    public GameObject talk;
+    public TextMeshProUGUI studentme;
 
     public GameObject[] disabletheese;
     public GameObject[] enabletheese;
-
+    public GameObject csript;
     int studentm;
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,9 @@ private GameObject throwme;
             {
                 go.SetActive(true);
             }
+            csript.GetComponent<FirstPersonLook>().enabled = false;
+            UnityEngine.Cursor.visible = true;
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
             GetComponent<Animator>().enabled = true;
         }
     }
@@ -120,7 +124,7 @@ private GameObject throwme;
                 {
                     activate.SetActive(true);
                     UnityEngine.Cursor.visible = true;
-                    player.SetActive(false);
+                    csript.GetComponent<FirstPersonLook>().enabled = false;
                     UnityEngine.Cursor.lockState = CursorLockMode.None;
                 }
                 asdfghj.text = "Click to enter pin";
@@ -134,6 +138,7 @@ private GameObject throwme;
                     if (Input.GetMouseButtonDown(0))
                     {
                         lskdljf.collider.gameObject.GetComponent<STUDEN>().aaa = false;
+                        lskdljf.collider.gameObject.GetComponent<STUDEN>().n = false;
                         Destroy(lskdljf.collider.gameObject.GetComponent<NavMeshAgent>());
                         throwme = lskdljf.collider.gameObject;
                         throwme.GetComponent<Rigidbody>().freezeRotation = true;
@@ -145,10 +150,15 @@ private GameObject throwme;
                     else if (Input.GetKeyDown("e"))
                     {
                         nottalking = false;
+                        studentme.text = "Student: In bed last night I was doing the number '"+studentm+"' ";
                         throwme = lskdljf.collider.gameObject;
                         studentm = lskdljf.collider.gameObject.GetComponent<STUDEN>().message;
                         lskdljf.collider.gameObject.GetComponent<STUDEN>().ask();
                         asdfghj.text = "";
+                        talk.SetActive(true);
+                        csript.GetComponent<FirstPersonLook>().enabled = false;
+                        UnityEngine.Cursor.visible = true;
+                        UnityEngine.Cursor.lockState = CursorLockMode.None;
                         print("ASDFG");
                     }
                     asdfghj.text = "Click to grab, press E to talk";
@@ -193,6 +203,14 @@ private GameObject throwme;
     public void okthen()
     {
         nottalking = true;
-        throwme.GetComponent<STUDEN>().bye();
+        if (throwme==null){
+
+        }
+        else{
+            throwme.GetComponent<STUDEN>().bye();
+        }
+        csript.GetComponent<FirstPersonLook>().enabled = true;
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 }

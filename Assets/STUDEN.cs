@@ -9,6 +9,7 @@ public class STUDEN : MonoBehaviour
 {    
     NavMeshAgent agent;
     public bool aaa = false;
+    public bool n = true;
     int walkto;
     public GameObject locations;
     public Transform[] goals;
@@ -62,7 +63,9 @@ public class STUDEN : MonoBehaviour
     }
     public void ask()
     {
+        if(aaa){
         agent.destination = transform.position;
+        }
         aaa = false;
 
         a.SetBool("ask", true);
@@ -71,7 +74,9 @@ public class STUDEN : MonoBehaviour
 
     public void bye()
     {
+        if(n){
         aaa = true;
+        }
         a.SetBool("ask", false);
     }
         // Update is called once per frame
