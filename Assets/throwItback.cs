@@ -42,7 +42,7 @@ private GameObject throwme;
             {
                 go.SetActive(true);
             }
-            csript.GetComponent<FirstPersonLook>().enabled = false;
+            csript.GetComponent<FirstPersonLook>().asdf = false;
             UnityEngine.Cursor.visible = true;
             UnityEngine.Cursor.lockState = CursorLockMode.None;
             GetComponent<Animator>().enabled = true;
@@ -124,7 +124,7 @@ private GameObject throwme;
                 {
                     activate.SetActive(true);
                     UnityEngine.Cursor.visible = true;
-                    csript.GetComponent<FirstPersonLook>().enabled = false;
+                    csript.GetComponent<FirstPersonLook>().asdf = false;
                     UnityEngine.Cursor.lockState = CursorLockMode.None;
                 }
                 asdfghj.text = "Click to enter pin";
@@ -156,7 +156,7 @@ private GameObject throwme;
                         lskdljf.collider.gameObject.GetComponent<STUDEN>().ask();
                         asdfghj.text = "";
                         talk.SetActive(true);
-                        csript.GetComponent<FirstPersonLook>().enabled = false;
+                        csript.GetComponent<FirstPersonLook>().asdf = false;
                         UnityEngine.Cursor.visible = true;
                         UnityEngine.Cursor.lockState = CursorLockMode.None;
                         print("ASDFG");
@@ -209,7 +209,7 @@ private GameObject throwme;
         else{
             throwme.GetComponent<STUDEN>().bye();
         }
-        csript.GetComponent<FirstPersonLook>().enabled = true;
+        csript.GetComponent<FirstPersonLook>().asdf = true;
         UnityEngine.Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }

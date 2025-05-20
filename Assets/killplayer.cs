@@ -12,7 +12,7 @@ public class killplayer : MonoBehaviour
 
     public AudioSource chase;
     public AudioSource ambience;
-    public AudioSource footsteps;
+    //public AudioSource footsteps;
      IEnumerator a(){
         // slow down for
         GetComponent<AudioSource>().Play();
@@ -82,13 +82,13 @@ public class killplayer : MonoBehaviour
         //if aaa is true then start moving to the goal
         if (aaa){
         agent.destination = goal.position;
-            footsteps.volume = 1;
+           // footsteps.volume = 1;
         chase.volume = 1-Mathf.Lerp(0, 1f, agent.remainingDistance /222f);
             ambience.volume = Mathf.Lerp(0, 1f, agent.remainingDistance / 590f);
         }
         else
         {
-            footsteps.volume = 0;
+          //  footsteps.volume = 0;
             chase.volume -= 0.54321f * Time.deltaTime;
             ambience.volume = 1f;
         }

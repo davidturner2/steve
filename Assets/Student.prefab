@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aaa: 0
+  n: 1
   locations: {fileID: 0}
   goals: []
   message: 123
